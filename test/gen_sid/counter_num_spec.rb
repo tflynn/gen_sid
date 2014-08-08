@@ -26,14 +26,10 @@ describe 'A numeric counter' do
     expect(next_value == 0)
     expect(status == :normal)
 
-    counter.next_value # = 1
-    counter.next_value # = 2
-    counter.next_value # = 3
-    counter.next_value # = 4
-    counter.next_value # = 5
-    counter.next_value # = 6
-    counter.next_value # = 7
-    counter.next_value # = 8
+    # 1 through 8
+    1.upto(8) do |i|
+      counter.next_value
+    end
 
     next_value, status = counter.next_value # 9
     expect(next_value == 9)

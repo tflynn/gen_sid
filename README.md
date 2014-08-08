@@ -1,6 +1,8 @@
 # GenSid
 
-TODO: Write a gem description
+Generate sequential alphanumeric identifiers from a template
+
+e.g. Template 'AA9' produces 'AA0', 'AA1','AA2,'AA3', 'AA4', 'AA5', 'AA6', 'AA7', 'AA8', 'AA9', 'AB0', 'AB1', ....
 
 ## Installation
 

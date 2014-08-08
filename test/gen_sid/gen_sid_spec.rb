@@ -5,8 +5,7 @@ describe "Initialize SeqID" do
 
   it 'should supply defaults' do
     sid = GenSid::SeqID.new
-    expect(sid.total == 1)
-    expect(sid.pattern == 'A1')
+    expect(sid.pattern).to eq('A1')
   end
 
 

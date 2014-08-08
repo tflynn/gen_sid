@@ -3,7 +3,7 @@ module GenSid
 
   class Counter
 
-    attr_reader :initial_value
+    attr_reader :initial_value, :current_value
 
     def initialize(initial_value)
       @initial_value = initial_value

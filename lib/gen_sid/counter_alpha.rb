@@ -21,7 +21,7 @@ module GenSid
         status = :normal
       end
 
-      @current_value = @current_value == 'Z' ? 'A' : (@current_value[0].to_i + 1).to_s
+      @current_value = @current_value == 'Z' ? 'A' : (@current_value[0].ord + 1).chr
 
       [next_val,status]
 

@@ -7,13 +7,16 @@ module GenSid
     def initialize(pattern = 'A1')
       @pattern = pattern
       @reversed_counters = parse_pattern(@pattern).reverse
-
+      # Set all but first counter to skip first value on increment
+      1.upto(@reversed_counters.size - 1) do |pos|
+        @reversed_counters[pos].skip_first_value = true
+      end
     end
 
     def next_value
 
       # Counters are managed in reverse order - from least-significant (i.e. most rapidly varying)
-      # to most-significant (i.e. least rapidly varying.)
+      # to most-significant (i.e. least rapidly varying)
 
       last_processed = 0
       all_next = ""
@@ -30,7 +33,7 @@ module GenSid
       # Deal with remainder - get current values
       (last_processed + 1).upto(@reversed_counters.size - 1) do |pos|
         counter = @reversed_counters[pos]
-        all_next << counter.current_value.to_s
+        all_next << counter.value.to_s
       end
 
       # Reverse the result

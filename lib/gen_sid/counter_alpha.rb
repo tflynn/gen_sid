@@ -4,27 +4,34 @@ module GenSid
 
     def initialize(initial_value = 'A')
       super(initial_value)
-      @ignore_first_rollover = initial_value == 'A'
+    end
+
+    def value
+      @current_value.nil? ? @initial_value : @current_value
     end
 
     def next_value
-      next_val = @current_value
-
-      if (@current_value == 'A')
-        if (@ignore_first_rollover)
-          @ignore_first_rollover = false
-          status = :normal
-        else
-          status = :rollover
-        end
-      else
-        status = :normal
+      increment
+      if @skip_first_value
+        increment
+        @skip_first_value = false
       end
-
-      @current_value = @current_value == 'Z' ? 'A' : (@current_value[0].ord + 1).chr
-
+      next_val = @current_value
+      status = @previous_value == 'Z' ? :rollover : :normal
       [next_val,status]
+    end
 
+    def increment
+      @previous_value = @current_value
+      if @current_value.nil?
+        @current_value = @initial_value
+      else
+        if @current_value == 'Z'
+          @current_value = 'A'
+        else
+          @current_value = (@current_value[0].ord + 1).chr
+        end
+      end
     end
 
   end

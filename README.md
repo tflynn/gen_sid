@@ -22,11 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    require 'gen_sid'
+    seq = GenSid::SeqID.new('EF27Y')
+    # Note that the first 'next_value' call returns the initial value
+    seq.next_value # => "EF27Y"
+    seq.next_value # => "EF27Z"
+    seq.next_value # => "EF28A"
+
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/gen_sid/fork )
+1. Fork it ( https://github.com/tflynn/gen_sid/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
